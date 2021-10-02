@@ -10,15 +10,14 @@ import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertTrue;
 
 public class RegisterTests {
-
     private WebDriver driver;
     private RegisterPage registerPage;
-
 
     @BeforeMethod
     public void setupInstance() {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
+
         registerPage = new RegisterPage(driver);
         registerPage.navigateToRegisterPage();
     }
@@ -35,12 +34,14 @@ public class RegisterTests {
         registerPage.fillOutRegisterForm("Alexis", "Lopez", "alexislopezg@pm.me", "Test",
                 "1993-07-14");
         registerPage.clickSubmit();
+
         assertTrue(registerPage.isAccountCreated());
     }
 
     @Test
     public void canUserSubmitAnEmptyForm() {
         registerPage.clickSubmit();
+
         assertTrue(registerPage.areErrorMessagesShown());
     }
 
@@ -48,6 +49,7 @@ public class RegisterTests {
     public void canUserInsertAnInvalidBirthDate() {
         registerPage.fillOutRegisterForm("Alexis", "Lopez", "alexislopezg@pm.me", "Test",
                 "1993/07/14");
+
         assertTrue(registerPage.isInputInvalid("birthdate"));
     }
 
@@ -56,6 +58,7 @@ public class RegisterTests {
         registerPage.fillOutRegisterForm("Alexis", "Lopez", "This is an invalid email", "Test",
                 "1993-07-14");
         registerPage.clickSubmit();
+
         assertTrue(registerPage.isInputInvalid("email"));
     }
 
@@ -64,6 +67,7 @@ public class RegisterTests {
         registerPage.fillOutRegisterForm("Alexis", "Lopez", "alexislopez@pm.me", "     ",
                 "1993-07-14");
         registerPage.clickSubmit();
+
         assertFalse(registerPage.isAccountCreated());
     }
 }
