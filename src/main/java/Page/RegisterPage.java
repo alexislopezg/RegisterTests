@@ -60,7 +60,7 @@ public class RegisterPage extends Page {
         manInput.click();
     }
 
-    public void clickSubmit() {
+    public void submit() {
         submitButton.click();
     }
 

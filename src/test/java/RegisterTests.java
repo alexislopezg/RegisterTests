@@ -26,14 +26,14 @@ public class RegisterTests {
     public void canUserCreateAccount() {
         registerPage.fillOutRegisterForm("Alexis", "Lopez", "alexislopezg@pm.me", "Test",
                 "1993-07-14");
-        registerPage.clickSubmit();
+        registerPage.submit();
 
         assertTrue(registerPage.isAccountCreated());
     }
 
     @Test
     public void canUserSubmitAnEmptyForm() {
-        registerPage.clickSubmit();
+        registerPage.submit();
 
         assertTrue(registerPage.areErrorMessagesShown());
     }
@@ -50,7 +50,7 @@ public class RegisterTests {
     public void canUserInsertAnInvalidEmail() {
         registerPage.fillOutRegisterForm("Alexis", "Lopez", "This is an invalid email", "Test",
                 "1993-07-14");
-        registerPage.clickSubmit();
+        registerPage.submit();
 
         assertTrue(registerPage.isInputInvalid("email"));
     }
@@ -59,7 +59,7 @@ public class RegisterTests {
     public void canUserInsertAnWhiteSpaceAsPassword() {
         registerPage.fillOutRegisterForm("Alexis", "Lopez", "alexislopez@pm.me", "     ",
                 "1993-07-14");
-        registerPage.clickSubmit();
+        registerPage.submit();
 
         assertFalse(registerPage.isAccountCreated());
     }
