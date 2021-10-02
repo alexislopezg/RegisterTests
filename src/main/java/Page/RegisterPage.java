@@ -11,7 +11,6 @@ import java.util.List;
 
 public class RegisterPage extends Page {
     private WebDriver driver;
-    private WebDriverWait wait;
 
     @FindBy(name = "firstname")
     private WebElement nombreInput;
@@ -43,8 +42,6 @@ public class RegisterPage extends Page {
     public RegisterPage(final WebDriver driver) {
         super(driver);
         this.driver = driver;
-        final int TIME_OUT_IN_SECONDS = 10;
-        wait = new WebDriverWait(driver, TIME_OUT_IN_SECONDS);
     }
 
     public void open() {
@@ -68,8 +65,7 @@ public class RegisterPage extends Page {
         try {
             driver.switchTo().alert();
             return true;
-        }  
-        catch (NoAlertPresentException Ex) {
+        } catch (NoAlertPresentException Ex) {
             return false;
         }
     }
