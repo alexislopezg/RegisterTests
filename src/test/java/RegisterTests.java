@@ -14,7 +14,7 @@ public class RegisterTests {
     private RegisterPage registerPage;
 
     @BeforeMethod
-    public void setupInstance() {
+    public void setUp() {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
 
@@ -23,7 +23,7 @@ public class RegisterTests {
     }
 
     @AfterMethod
-    public void closeInstance() {
+    public void tearDown() {
         if (driver != null) {
             driver.quit();
         }
