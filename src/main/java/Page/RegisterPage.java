@@ -11,31 +11,31 @@ import java.util.List;
 public class RegisterPage extends Page {
 
     @FindBy(name = "firstname")
-    private WebElement nombreInput;
+    private WebElement inputFirstname;
 
     @FindBy(name = "lastname")
-    private WebElement apellidoInput;
+    private WebElement inputLastname;
 
     @FindBy(name = "email")
-    private WebElement emailInput;
+    private WebElement inputEmail;
 
     @FindBy(name = "password")
-    private WebElement passwordInput;
+    private WebElement inputPassword;
 
     @FindBy(name = "man")
-    private WebElement manInput; //sexo masculino
+    private WebElement inputMale; //sexo masculino
 
     @FindBy(name = "birthdate")
-    private WebElement birthDateInput;
+    private WebElement inputBirthdate;
 
     @FindBy(xpath = "//button[@type='submit']")
-    private WebElement submitButton;
+    private WebElement btnSubmit;
 
     @FindBy(xpath = "//span[@class='error']")
-    private List<WebElement> errorSpanList;
+    private List<WebElement> errorLabels;
 
     @FindBy(xpath = "//input[contains(@class,'invalid')]")
-    private List<WebElement> invalidInputErrorList;
+    private List<WebElement> invalidInputs;
 
     public RegisterPage(final WebDriver driver) {
         super(driver);
@@ -46,16 +46,16 @@ public class RegisterPage extends Page {
     }
 
     public void fillOutRegisterForm(String name, String lastName, String email, String password, String birthDate) {
-        nombreInput.sendKeys(name);
-        apellidoInput.sendKeys(lastName);
-        emailInput.sendKeys(email);
-        passwordInput.sendKeys(password);
-        birthDateInput.sendKeys(birthDate);
-        manInput.click();
+        inputFirstname.sendKeys(name);
+        inputLastname.sendKeys(lastName);
+        inputEmail.sendKeys(email);
+        inputPassword.sendKeys(password);
+        inputBirthdate.sendKeys(birthDate);
+        inputMale.click();
     }
 
     public void submit() {
-        submitButton.click();
+        btnSubmit.click();
     }
 
     public boolean isAccountCreated() {
@@ -68,7 +68,7 @@ public class RegisterPage extends Page {
     }
 
     public boolean areErrorMessagesShown() {
-        return errorSpanList.size() == 6;
+        return errorLabels.size() == 6;
     }
 
     public boolean isInputInvalid(String fieldName) {
