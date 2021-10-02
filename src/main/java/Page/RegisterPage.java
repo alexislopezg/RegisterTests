@@ -8,6 +8,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.Collection;
+import java.util.List;
 
 public class RegisterPage extends Page {
 
@@ -33,7 +34,7 @@ public class RegisterPage extends Page {
     private WebElement buttonSubmit;
 
     @FindBy(xpath = "//span[@class='error']")
-    private Collection<WebElement> listErrors;
+    private List<WebElement> listErrors;
 
     public RegisterPage(final WebDriver driver) {
         super(driver);
