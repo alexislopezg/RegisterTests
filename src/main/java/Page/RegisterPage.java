@@ -23,7 +23,7 @@ public class RegisterPage extends Page {
     private WebElement inputPassword;
 
     @FindBy(name = "man")
-    private WebElement inputMale; //sexo masculino
+    private WebElement inputMale;
 
     @FindBy(name = "birthdate")
     private WebElement inputBirthdate;
