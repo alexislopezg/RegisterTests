@@ -19,7 +19,7 @@ public class RegisterTests {
         driver = new ChromeDriver();
 
         registerPage = new RegisterPage(driver);
-        registerPage.navigateToRegisterPage();
+        registerPage.open();
     }
 
     @Test

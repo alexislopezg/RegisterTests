@@ -47,7 +47,7 @@ public class RegisterPage extends Page {
         wait = new WebDriverWait(driver, TIME_OUT_IN_SECONDS);
     }
 
-    public void navigateToRegisterPage() {
+    public void open() {
         driver.get("http://3.87.50.247:3000/");
     }
 
