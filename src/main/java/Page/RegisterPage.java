@@ -1,5 +1,6 @@
 package Page;
 
+import model.User;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.WebDriver;
@@ -45,12 +46,12 @@ public class RegisterPage extends Page {
         driver.get("http://3.87.50.247:3000/");
     }
 
-    public void fillOutRegisterForm(String name, String lastName, String email, String password, String birthDate) {
-        inputFirstname.sendKeys(name);
-        inputLastname.sendKeys(lastName);
-        inputEmail.sendKeys(email);
-        inputPassword.sendKeys(password);
-        inputBirthdate.sendKeys(birthDate);
+    public void fillOutRegisterForm(User user) {
+        inputFirstname.sendKeys(user.getName());
+        inputLastname.sendKeys(user.getLastName());
+        inputEmail.sendKeys(user.getEmail());
+        inputPassword.sendKeys(user.getPassword());
+        inputBirthdate.sendKeys(user.getBirthDate());
         inputMale.click();
     }
 
