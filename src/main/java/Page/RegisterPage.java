@@ -5,12 +5,10 @@ import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 
 public class RegisterPage extends Page {
-    private WebDriver driver;
 
     @FindBy(name = "firstname")
     private WebElement nombreInput;
@@ -41,7 +39,6 @@ public class RegisterPage extends Page {
 
     public RegisterPage(final WebDriver driver) {
         super(driver);
-        this.driver = driver;
     }
 
     public void open() {
