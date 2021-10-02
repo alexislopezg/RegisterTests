@@ -22,13 +22,6 @@ public class RegisterTests {
         registerPage.navigateToRegisterPage();
     }
 
-    @AfterMethod
-    public void tearDown() {
-        if (driver != null) {
-            driver.quit();
-        }
-    }
-
     @Test
     public void canUserCreateAccount() {
         registerPage.fillOutRegisterForm("Alexis", "Lopez", "alexislopezg@pm.me", "Test",
@@ -69,5 +62,12 @@ public class RegisterTests {
         registerPage.clickSubmit();
 
         assertFalse(registerPage.isAccountCreated());
+    }
+
+    @AfterMethod
+    public void tearDown() {
+        if (driver != null) {
+            driver.quit();
+        }
     }
 }
