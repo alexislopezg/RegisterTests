@@ -1,6 +1,6 @@
-import Page.RegisterPage;
-import model.User;
+import Page.RegisterUserForm;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import model.User;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
@@ -10,28 +10,28 @@ import org.testng.annotations.Test;
 import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertTrue;
 
-public class RegisterTests {
+public class RegisterUserFormTests {
     private WebDriver driver;
-    private RegisterPage registerPage;
+    private RegisterUserForm form;
 
     @BeforeMethod
     public void setUp() {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
 
-        registerPage = new RegisterPage(driver);
-        registerPage.open();
+        form = new RegisterUserForm(driver);
+        form.open();
     }
 
     @Test
-    public void canUserSubmitAnEmptyForm() {
-        registerPage.submit();
+    public void registerNewUser_HasNoValues_ShouldDisplayError() {
+        form.submit();
 
-        assertTrue(registerPage.areErrorMessagesShown());
+        assertTrue(form.areErrorMessagesShown());
     }
 
     @Test
-    public void canUserCreateAccount() {
+    public void registerNewUser_HasValidValues_ShouldCreateNewUser() {
         User user = new User(
                 "Alexis",
                 "Lopez",
@@ -40,14 +40,14 @@ public class RegisterTests {
                 "1993-07-14"
         );
 
-        registerPage.fillOutRegisterForm(user);
-        registerPage.submit();
+        form.fill(user);
+        form.submit();
 
-        assertTrue(registerPage.isAccountCreated());
+        assertTrue(form.isAccountCreated());
     }
 
     @Test
-    public void canUserInsertAnInvalidBirthDate() {
+    public void registerNewUser_HasInvalidBirthday_ShouldDisplayAnError() {
         User invalidBirthdateUser = new User(
                 "Alexis",
                 "Lopez",
@@ -56,13 +56,13 @@ public class RegisterTests {
                 "1993/07/14"
         );
 
-        registerPage.fillOutRegisterForm(invalidBirthdateUser);
+        form.fill(invalidBirthdateUser);
 
-        assertTrue(registerPage.isInputInvalid("birthdate"));
+        assertTrue(form.isInputInvalid("birthdate"));
     }
 
     @Test
-    public void canUserInsertAnInvalidEmail() {
+    public void registerNewUser_HasInvalidEmail_ShouldDisplayAnError() {
         User invalidEmailUser = new User(
                 "Alexis",
                 "Lopez",
@@ -71,15 +71,15 @@ public class RegisterTests {
                 "1993-07-14"
         );
 
-        registerPage.fillOutRegisterForm(invalidEmailUser);
-        registerPage.submit();
+        form.fill(invalidEmailUser);
+        form.submit();
 
-        assertTrue(registerPage.isInputInvalid("email"));
+        assertTrue(form.isInputInvalid("email"));
     }
 
     @Test
-    public void canUserInsertAnWhiteSpaceAsPassword() {
-        User emptyPasswordUser = new User(
+    public void registerNewUser_HasAWhitespaceOnlyPassword_ShouldDisplayAnError() {
+        User whitespacePasswordUser = new User(
                 "Alexis",
                 "Lopez",
                 "alexislopez@pm.me",
@@ -87,10 +87,14 @@ public class RegisterTests {
                 "1993-07-14"
         );
 
-        registerPage.fillOutRegisterForm(emptyPasswordUser);
-        registerPage.submit();
+        form.fill(whitespacePasswordUser);
+        form.submit();
 
-        assertFalse(registerPage.isAccountCreated());
+        /* TODO: checking for the boolean value of this WebElement is too ambiguous
+         * it would be better to provide another method that would check for the exact warning/alert that
+         * should be displayed.
+         */
+        assertFalse(form.isAccountCreated());
     }
 
     @AfterMethod

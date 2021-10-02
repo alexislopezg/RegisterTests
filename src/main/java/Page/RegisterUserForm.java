@@ -9,7 +9,7 @@ import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
 
-public class RegisterPage extends Page {
+public class RegisterUserForm extends Page {
 
     @FindBy(name = "firstname")
     private WebElement inputFirstname;
@@ -35,7 +35,7 @@ public class RegisterPage extends Page {
     @FindBy(xpath = "//span[@class='error']")
     private List<WebElement> listErrors;
 
-    public RegisterPage(final WebDriver driver) {
+    public RegisterUserForm(final WebDriver driver) {
         super(driver);
     }
 
@@ -43,7 +43,7 @@ public class RegisterPage extends Page {
         driver.get("http://3.87.50.247:3000/");
     }
 
-    public void fillOutRegisterForm(User user) {
+    public void fill(User user) {
         inputFirstname.sendKeys(user.getName());
         inputLastname.sendKeys(user.getLastName());
         inputEmail.sendKeys(user.getEmail());
