@@ -9,7 +9,6 @@ public class Page {
 
     public Page(final WebDriver driver) {
         this.driver = driver;
-        final int TIMEOUT_IN_SECONDS = 15;
-        PageFactory.initElements(new AjaxElementLocatorFactory(driver, TIMEOUT_IN_SECONDS), this);
+        PageFactory.initElements(new AjaxElementLocatorFactory(driver, 15), this);
     }
 }
