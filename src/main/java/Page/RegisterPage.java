@@ -7,7 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import java.util.List;
+import java.util.Collection;
 
 public class RegisterPage extends Page {
 
@@ -30,13 +30,10 @@ public class RegisterPage extends Page {
     private WebElement inputBirthdate;
 
     @FindBy(xpath = "//button[@type='submit']")
-    private WebElement btnSubmit;
+    private WebElement buttonSubmit;
 
     @FindBy(xpath = "//span[@class='error']")
-    private List<WebElement> errorLabels;
-
-    @FindBy(xpath = "//input[contains(@class,'invalid')]")
-    private List<WebElement> invalidInputs;
+    private Collection<WebElement> listErrors;
 
     public RegisterPage(final WebDriver driver) {
         super(driver);
@@ -56,7 +53,7 @@ public class RegisterPage extends Page {
     }
 
     public void submit() {
-        btnSubmit.click();
+        buttonSubmit.click();
     }
 
     public boolean isAccountCreated() {
@@ -69,7 +66,7 @@ public class RegisterPage extends Page {
     }
 
     public boolean areErrorMessagesShown() {
-        return errorLabels.size() == 6;
+        return listErrors.size() == 6;
     }
 
     public boolean isInputInvalid(String fieldName) {
