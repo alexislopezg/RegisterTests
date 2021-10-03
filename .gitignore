@@ -9,8 +9,8 @@
 .idea/**/shelf
 .classpath
 .project
-RegisterTests.eml
-RegisterTests.iml
+RegisterUserFormTests.eml
+RegisterUserFormTests.iml
 # AWS User-specific
 .idea/**/aws.xml
 

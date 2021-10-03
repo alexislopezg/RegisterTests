@@ -5,8 +5,10 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 
 public class Page {
+    protected WebDriver driver;
+
     public Page(final WebDriver driver) {
-        final int TIMEOUT_IN_SECONDS = 15;
-        PageFactory.initElements(new AjaxElementLocatorFactory(driver, TIMEOUT_IN_SECONDS), this);
+        this.driver = driver;
+        PageFactory.initElements(new AjaxElementLocatorFactory(driver, 15), this);
     }
 }
